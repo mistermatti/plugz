@@ -27,12 +27,12 @@ def register_plugin(f):
     # some basic sanity tests follow
     # ------------------------------
     if not issubclass(f, PluginTypeBase): # make sure that the plugin is of correct type
-        logger.warning('%s cannot be registered. It does not inherit from PluginTypeBase.' % f}
+        logger.warning('%s cannot be registered. It does not inherit from PluginTypeBase.' % f)
         return f
 
     if f.__abstractmethods__: # make sure all abstract methods have been implemented
         methods = ','.join(f.__abstractmethods__)
-        logger.warning('%s cannot be registerd. It has unimplemented abstract methods: %s' % (f, methods)
+        logger.warning('%s cannot be registerd. It has unimplemented abstract methods: %s' % (f, methods))
         return f
 
     # register the plugin in the system
@@ -83,5 +83,5 @@ def load_plugins(paths, plugintype):
 
 
 def _load_plugin(plugin_name):
-    logger.debug('Loading %s...' % plugin_name))
+    logger.debug('Loading %s...' % plugin_name)
     p = __import__(plugin_name)
