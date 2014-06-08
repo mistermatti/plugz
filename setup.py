@@ -11,6 +11,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
+import plugz
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
@@ -24,7 +25,7 @@ test_requirements = [
 
 setup(
     name='plugz',
-    version='0.1.0',
+    version= plugz.__version__,
     description='Plugin framework that simplifies plugin support in your tools',
     long_description=readme + '\n\n' + history,
     author='Matti Gruener',
@@ -32,6 +33,8 @@ setup(
     url='https://github.com/mistermatti/plugz',
     packages=[
         'plugz',
+        'plugz.errors',
+        'plugz.plugintypes'
     ],
     package_dir={'plugz':
                  'plugz'},
