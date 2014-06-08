@@ -15,7 +15,7 @@ plugz
 Plugin framework that simplifies plugin support in your tools
 
 * Free software: BSD license
-* Documentation: http://plugz.readthedocs.org.
+* Documentation: http://plugz.readthedocs.org
 
 Features
 --------
