@@ -4,7 +4,7 @@ plugz
 
 .. image:: https://badge.fury.io/py/plugz.png
     :target: http://badge.fury.io/py/plugz
-    
+
 .. image:: https://travis-ci.org/mistermatti/plugz.png?branch=master
         :target: https://travis-ci.org/mistermatti/plugz
 
@@ -20,4 +20,5 @@ Plugin framework that simplifies plugin support in your tools
 Features
 --------
 
-* TODO
+* Lets you register custom plugin types and plugins
+* Loading mechanism for plugins of a specific type in given locations
