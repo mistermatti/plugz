@@ -58,7 +58,7 @@ def test_loading_plugins_for_standard_plugin_type():
     # make sure the loaded plugins have the correct plugintype.
     assert all(map(lambda x: x.plugintype == StandardPluginType.plugintype, plugins))
     # make sure it's the correct plugins that were loaded.
-    assert 'MyValidPluginOne' in [p.__name__ for p in plugins]
+    assert 'MyFirstValidPlugin' in [p.__name__ for p in plugins]
     assert 'MyValidPluginTwo' in [p.__name__ for p in plugins]
 
     for p in plugins:
