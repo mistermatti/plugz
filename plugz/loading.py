@@ -3,26 +3,36 @@ import sys
 import inspect
 from collections import defaultdict
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 from plugz import PluginTypeBase
 import errors
 
+
+""" Main storage of the plugins."""
 _loaded_plugins = defaultdict(list)
 
+
 def register_plugin(f):
-    """
+    """ Register the given class as plugin if valid.
 
-    will be used as decorator
-    """
+    Will be used as decorator in the framework. This function
+    also does basic sanity checks in order to reject invalid
+    plugins.
 
-    # TODO, logging!!
+    """
 
     # some basic sanity tests follow
+    # ------------------------------
     if not issubclass(f, PluginTypeBase): # make sure that the plugin is of correct type
-        print 'Warning: %s cannot be registered because it does not inherit from PluginTypeBase.' % f
+        logger.warning('%s cannot be registered. It does not inherit from PluginTypeBase.' % f}
         return f
 
     if f.__abstractmethods__: # make sure all abstract methods have been implemented
-        print 'Warning: %s cannot be registerd because it has unimplemented abstract methods: %s' % (f,  [x for x in f.__abstractmethods__])
+        methods = ','.join(f.__abstractmethods__)
+        logger.warning('%s cannot be registerd. It has unimplemented abstract methods: %s' % (f, methods)
         return f
 
     # register the plugin in the system
@@ -33,8 +43,8 @@ def register_plugin(f):
 
 
 def load_plugins(paths, plugintype):
-    """
-    """
+    """ Load plugins of given type in given directories. """
+
     # check if the given type is None
     if not plugintype:
         raise errors.NoValidPluginTypeError()
@@ -73,5 +83,5 @@ def load_plugins(paths, plugintype):
 
 
 def _load_plugin(plugin_name):
-    # TODO, make this proper logged stuff. -- Matti.
+    logger.debug('Loading %s...' % plugin_name))
     p = __import__(plugin_name)
