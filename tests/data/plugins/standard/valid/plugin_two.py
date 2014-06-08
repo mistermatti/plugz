@@ -8,8 +8,8 @@ class MyValidPluginTwo(plugz.StandardPluginType):
     """
 
     def __init__(self, ):
-        """
-        """
+        """ """
+        # do all your initialization here
         pass
 
     def activate(self):
