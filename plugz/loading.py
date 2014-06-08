@@ -25,9 +25,6 @@ def register_plugin(f):
         print 'Warning: %s cannot be registerd because it has unimplemented abstract methods: %s' % (f,  [x for x in f.__abstractmethods__])
         return f
 
-    if not hasattr(f, 'plugintype'): # make sure the plugintype is set so that we know where to put it
-        print 'Warning: %s cannot be registered because no plugintype is set' % f
-
     # register the plugin in the system
     _loaded_plugins[getattr(f, 'plugintype', 'unsorted')].append(f)
 
@@ -38,7 +35,7 @@ def register_plugin(f):
 def load_plugins(paths, plugintype):
     """
     """
-    # check if the given path is None
+    # check if the given type is None
     if not plugintype:
         raise errors.NoValidPluginTypeError()
 
@@ -66,14 +63,9 @@ def load_plugins(paths, plugintype):
         sys.path.insert(0, path)
         for pf in os.listdir(path):
             if plugintype.is_valid_file(pf):
-                try:
-                    base = os.path.basename(pf).split(os.path.extsep)[0]
-                    # print 'Trying to load %s in %s' % (base, sys.path[0])
-                    _load_plugin(base)
-                except IndexError:
-                    # this should never happen if the is_valid_file() method
-                    # checks proper file extensions. Just check next file.
-                    continue
+                # as long as only files with extensions are used, this works.
+                base = os.path.basename(pf).split(os.path.extsep)[0]
+                _load_plugin(base)
 
         sys.path.pop(0)
 
