@@ -5,6 +5,6 @@ from plugintypes import StandardPluginType
 
 __author__ = 'Matti Gruener'
 __email__ = 'matti@mistermatti.com'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 __ALL__ = [load_plugins, register_plugin, StandardPluginType, PluginTypeBase]
